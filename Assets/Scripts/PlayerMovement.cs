@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 moveVectorNormalized = _playerInputActions.Player.Move.ReadValue<Vector2>();
                 rb.AddForce((new Vector2(moveVectorNormalized.x, 0) * speedValueSupport));
             }
-            Debug.Log(rb.velocity);
         }
     }
 }

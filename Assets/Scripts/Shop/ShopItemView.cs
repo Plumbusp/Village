@@ -1,0 +1,45 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
+
+public class ShopItemView : MonoBehaviour, IPointerClickHandler
+{
+    public event Action<ShopItemView> Click;
+
+    private Image _backgroundImage;
+    [SerializeField] private Sprite _standardBackground;
+    [SerializeField] private Sprite _highlightBackground;
+    [SerializeField] private Image _contentImage;
+    [SerializeField] private Image _lockMask;
+    [SerializeField] private ValueView<int> _priceView;
+
+    public ShopItem Item { get; private set; }
+    public bool IsLock { get; private set; }
+    public int Price => Item.Price;
+    public void Initialize(ShopItem item)
+    {
+        _backgroundImage = GetComponent<Image>();
+        _backgroundImage.sprite = _standardBackground;
+
+        Item = item;
+        _contentImage.sprite = item.Image;
+        _priceView.Show(Price);
+    }
+    public void OnPointerClick(PointerEventData eventData) => Click?.Invoke(this);
+
+    public void Lock()
+    {
+        IsLock = true;
+        _lockMask.gameObject.SetActive(IsLock);
+        _priceView.Show(Price);
+    }
+    public void Unlock()
+    {
+        IsLock = false;
+        _lockMask.gameObject.SetActive(IsLock);
+        _priceView.Hide();
+    }
+    public void Highlighted() => _backgroundImage.sprite = _highlightBackground;
+    public void UnHighlighted() => _backgroundImage.sprite = _standardBackground;
+}
