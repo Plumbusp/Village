@@ -12,7 +12,7 @@ public class ShopItemView : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite _highlightBackground;
     [SerializeField] private Image _contentImage;
     [SerializeField] private Image _lockMask;
-    [SerializeField] private ValueView<int> _priceView;
+    [SerializeField] private intValueView _priceView;
 
     public ShopItem Item { get; private set; }
     public bool IsLock { get; private set; }

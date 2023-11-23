@@ -10,8 +10,8 @@ public class ShopContent : ScriptableObject
     [SerializeField] private List<HairItem> _hairItems;
     [SerializeField] private List<HatItem> _hatItems;
 
-    private IEnumerable<HairItem> HairItems => _hairItems;
-    private IEnumerable<HatItem> HatItems => _hatItems;
+    public IEnumerable<HairItem> HairItems => _hairItems;
+    public IEnumerable<HatItem> HatItems => _hatItems;
     private void OnValidate()
     {
         var hairItemsDublicates = _hairItems.GroupBy(item => item.HairType)

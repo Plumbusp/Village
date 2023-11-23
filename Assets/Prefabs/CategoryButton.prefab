@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 4280029714492425684}
   - component: {fileID: 3683701024629531999}
   - component: {fileID: 142110296426552257}
+  - component: {fileID: 9186596472263853699}
   m_Layer: 5
   m_Name: CategoryButton
   m_TagString: Untagged
@@ -255,3 +256,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9186596472263853699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972436236759409837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d009a7b354d27e43bd06c059543e1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 3683701024629531999}
+  _unselectedColor: {r: 1, g: 1, b: 1, a: 0}
+  _selectedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0}
