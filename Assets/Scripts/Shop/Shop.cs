@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -10,24 +11,24 @@ public class Shop : MonoBehaviour
     [SerializeField] private ShopPanel _shopPanel;
     private void OnEnable()
     {
-        _hatsButton.Click += OnHatsCategoryBattonClick;
+        _hatsButton.Click += OnHatsCategoryButtonClick;
         _hairButton.Click += OnHairCategoryButtonClick;
     }
     private void OnDisable()
     {
-        _hatsButton.Click -= OnHatsCategoryBattonClick;
+        _hatsButton.Click -= OnHatsCategoryButtonClick;
         _hairButton.Click -= OnHairCategoryButtonClick;
     }
-    private void OnHatsCategoryBattonClick()
+    private void OnHatsCategoryButtonClick()
     {
         _hatsButton.Selected();
         _hairButton.UnSelected();
-        _shopPanel.Show(_shopContent.HatItems);
+        _shopPanel.Show(_shopContent.HatItems.Cast<ShopItem>());
     }
     private void OnHairCategoryButtonClick()
     {
         _hairButton.Selected();
         _hatsButton.UnSelected();
-        _shopPanel.Show(_shopContent.HairItems);
+        _shopPanel.Show(_shopContent.HairItems.Cast<ShopItem>());
     }
 }

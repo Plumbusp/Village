@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45251e02c78cd754d988cb318c0df746, type: 3}
   m_Name: BlondLongHair
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 21300000, guid: 0a5880b4d2a6a2346857a077bb87904e, type: 3}
   <Price>k__BackingField: 0
   <HairType>k__BackingField: 0

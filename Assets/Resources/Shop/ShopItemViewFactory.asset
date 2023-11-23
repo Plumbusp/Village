@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6a894fcdccfb746ab122499bf332ec, type: 3}
   m_Name: ShopItemViewFactory
   m_EditorClassIdentifier: 
-  _iItemPrefab: {fileID: 0}
+  _hatPrefab: {fileID: 8955567420419337901, guid: f0fd604dc0403b945becefbc78df3b0f, type: 3}
+  _hairPrefab: {fileID: 6976186507640222441, guid: 4cb1d285980972a499553dc4c1b406c1, type: 3}

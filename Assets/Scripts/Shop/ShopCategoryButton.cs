@@ -18,7 +18,7 @@ public class ShopCategoryButton : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+        _button.onClick.RemoveListener(OnClick);
     }
     public void Selected() => _image.color = _selectedColor;
     public void UnSelected() => _image.color = _unselectedColor;

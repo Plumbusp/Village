@@ -131,7 +131,7 @@ MonoBehaviour:
   _highlightBackground: {fileID: 21300000, guid: 96941bde162a5224894f51c687e1624e, type: 3}
   _contentImage: {fileID: 7183176960834778006}
   _lockMask: {fileID: 5513832819123619624}
-  _priceView: {fileID: 0}
+  _priceView: {fileID: 4149129339526996129}
 --- !u!1 &2206344656456591824
 GameObject:
   m_ObjectHideFlags: 0

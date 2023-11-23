@@ -7,6 +7,7 @@ public class ShopPanel : MonoBehaviour
     private List<ShopItemView> _shopItems = new List<ShopItemView>(); // All currently showen shop Items
 
     [SerializeField] private ShopItemViewFactory _shopItemViewFactory;
+    IEnumerable<ShopItem> test;
     [SerializeField] private Transform _parent; // the parent under which items will spawn
 
     public void Show(IEnumerable<ShopItem> shopItems)
@@ -23,14 +24,15 @@ public class ShopPanel : MonoBehaviour
     }
     private void Clear()
     {
-        foreach(ShopItemView shopItem in _shopItems)
+        foreach(ShopItemView item in _shopItems)
         {
-            shopItem.Click -= OnShopItemClicked;
-            Destroy(shopItem);
+            item.Click -= OnShopItemClicked;
+            Destroy(item.gameObject);
         }
+        _shopItems.Clear();
     }
     private void OnShopItemClicked(ShopItemView shopItemView)
     {
-
+        Debug.Log("Clicked");
     }
 }
