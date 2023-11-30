@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DataProvider
+public class LocalDataProvider
 {
     private PersistantData _persistantData;
-    public DataProvider(PersistantData persistantData) => _persistantData = persistantData; // Передаем ссылку!
+    public LocalDataProvider(PersistantData persistantData) => _persistantData = persistantData; // Передаем ссылку!
 
     private string FullPath => $"{Application.persistentDataPath}/PlayerData.json";
     public bool TryLoad()
