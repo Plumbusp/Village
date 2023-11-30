@@ -6,26 +6,26 @@ using UnityEngine;
 
 public class PlayerData
 {
-    private HairItem _selectedHair;
-    private HatItem _selectedHat;
-    private List<HairItem> _openHairsItems;
-    private List<HatItem> _openHatsItems;
+    private HairTypes _selectedHair;
+    private HatTypes _selectedHat;
+    private List<HairTypes> _openHairs;
+    private List<HatTypes> _openHats;
     private int _money;
 
-    public HairItem SelectedHair
+    public HairTypes SelectedHair
     {
         get {
             return _selectedHair;
         }
         set
         {
-            if (_openHairsItems.Contains(value))
+            if (_openHairs.Contains(value))
                 _selectedHair = value;
             else
                 throw new ArgumentException(nameof(value)); 
         }
     }
-    public HatItem SelectedHat
+    public HatTypes SelectedHat
     {
         get
         {
@@ -33,14 +33,14 @@ public class PlayerData
         }
         set
         {
-            if (_openHatsItems.Contains(value))
+            if (_openHats.Contains(value))
                 _selectedHat = value;
             else
                 throw new ArgumentException(nameof(value));
         }
     }
-    public IEnumerable<HairItem> OpenHairsItems => _openHairsItems;
-    public IEnumerable<HatItem> OpenHatsItems => _openHatsItems;
+    public IEnumerable<HairTypes> OpenHairs => _openHairs;
+    public IEnumerable<HatTypes> OpenHats => _openHats;
     public int Money
     {
         get {
@@ -51,5 +51,18 @@ public class PlayerData
                 throw new ArgumentException(nameof(value));
             _money = value;
         }
+    }
+
+    public void OpenHair(HairTypes hair)
+    {
+        if(_openHairs.Contains(hair))
+            throw new ArgumentException(nameof(hair));
+        _openHairs.Add(hair);
+    }
+    public void OpenHat(HatTypes hat)
+    {
+        if(_openHats.Contains(hat))
+            throw new ArgumentException(nameof(hat));
+        _openHats.Add(hat);
     }
 }

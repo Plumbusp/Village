@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,7 @@ public class ShopPanel : MonoBehaviour
             _shopItems.Add(instance);
             instance.Click += OnShopItemClicked;
             instance.UnHighlighted();
+
         }
 
     }
