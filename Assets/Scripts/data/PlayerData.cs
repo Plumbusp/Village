@@ -53,13 +53,13 @@ public class PlayerData
         }
     }
 
-    public void OpenHair(HairTypes hair)
+    public void OpenTheHair(HairTypes hair)
     {
         if(_openHairs.Contains(hair))
             throw new ArgumentException(nameof(hair));
         _openHairs.Add(hair);
     }
-    public void OpenHat(HatTypes hat)
+    public void OpenTheHat(HatTypes hat)
     {
         if(_openHats.Contains(hat))
             throw new ArgumentException(nameof(hat));

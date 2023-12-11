@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6400800258980586749}
   m_Layer: 5
-  m_Name: SelectedScreen
+  m_Name: SelectedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6400800258980586749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31,10 +31,10 @@ RectTransform:
   - {fileID: 373527104184067960}
   m_Father: {fileID: 1954250593083675744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1788705195527058578
 GameObject:
@@ -132,6 +132,7 @@ MonoBehaviour:
   _contentImage: {fileID: 7183176960834778006}
   _lockMask: {fileID: 5513832819123619624}
   _priceView: {fileID: 4149129339526996129}
+  _selectedText: {fileID: 1371344115783469356}
 --- !u!1 &2206344656456591824
 GameObject:
   m_ObjectHideFlags: 0

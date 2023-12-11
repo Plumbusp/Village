@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BrownShortHair
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 21300000, guid: 0b0ebd02bb7ff454b8fbee309476788f, type: 3}
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 401
   <HairType>k__BackingField: 1

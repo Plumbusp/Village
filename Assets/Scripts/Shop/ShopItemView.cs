@@ -13,6 +13,7 @@ public class ShopItemView : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _contentImage;
     [SerializeField] private Image _lockMask;
     [SerializeField] private intValueView _priceView;
+    [SerializeField] private GameObject _selectedText;
 
     public ShopItem Item { get; private set; }
     public bool IsLock { get; private set; }
@@ -40,6 +41,8 @@ public class ShopItemView : MonoBehaviour, IPointerClickHandler
         _lockMask.gameObject.SetActive(IsLock);
         _priceView.Hide();
     }
-    public void Highlighted() => _backgroundImage.sprite = _highlightBackground;
-    public void UnHighlighted() => _backgroundImage.sprite = _standardBackground;
+    public void Highlighte() => _backgroundImage.sprite = _highlightBackground;
+    public void UnHighlighte() => _backgroundImage.sprite = _standardBackground;
+    public void Select() => _selectedText.gameObject.SetActive(true); // Visually somehow show, that the item is selected
+    public void UnSelected() => _selectedText.gameObject.SetActive(false); 
 }

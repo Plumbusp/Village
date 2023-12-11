@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BlackHat
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 21300000, guid: 0f9c869afa929dc48a3a0df04f2bc44d, type: 3}
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 2005
   <HatType>k__BackingField: 2

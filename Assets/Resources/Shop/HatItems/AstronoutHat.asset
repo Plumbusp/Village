@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AstronoutHat
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 21300000, guid: da6e40c1b8a5bb9478ae87ec5221ee49, type: 3}
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 2072
   <HatType>k__BackingField: 0

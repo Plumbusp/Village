@@ -9,28 +9,33 @@ public class ShopItemViewFactory : ScriptableObject
 {
     [SerializeField] private ShopItemView _hairPrefab;
     [SerializeField] private ShopItemView _hatPrefab;
-    private ShopItemVisiter _shopItemVisiter = new ShopItemVisiter(_hatPrefab, _hairPrefab);
+    private ShopItemVisiter _shopItemVisiter;
+    private void Awake()
+    {
+        _shopItemVisiter = new ShopItemVisiter(_hatPrefab, _hairPrefab);
+    }
     public ShopItemView Get(ShopItem item, Transform parent)
     {
-        ShopItemView instance = null;
-         
+        _shopItemVisiter = new ShopItemVisiter(_hatPrefab, _hairPrefab);
+        _shopItemVisiter.Visit(item);
+        ShopItemView instance = Instantiate(_shopItemVisiter.Prefab, parent);
         instance.Initialize(item);
         return instance; 
     }
     private class ShopItemVisiter : IShopItemVisiter
     {
-        public ShopItemView prefab;
+        public ShopItemView Prefab; // public variable to access
         private ShopItemView _hairPrefab;
         private ShopItemView _hatPrefab;
-        ShopItemVisiter(ShopItemView hatPrefab, ShopItemView hairPrefab)
+        public ShopItemVisiter(ShopItemView hatPrefab, ShopItemView hairPrefab)
         {
             _hairPrefab = hatPrefab;
             _hatPrefab = hairPrefab;
         }
         public void Visit(ShopItem shopItem) => Visit((dynamic)shopItem);
 
-        public void Visit(HatItem hatItem) => prefab = _hatPrefab;
+        public void Visit(HatItem hatItem) => Prefab = _hatPrefab;
 
-        public void Visit(HairItem hairItem) => prefab = _hairPrefab;
+        public void Visit(HairItem hairItem) => Prefab = _hairPrefab;
     }
 }
