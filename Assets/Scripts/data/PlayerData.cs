@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,24 @@ public class PlayerData
     private List<HairTypes> _openHairs;
     private List<HatTypes> _openHats;
     private int _money;
+
+    public PlayerData()
+    {
+        _money = 1000;
+        _selectedHair = HairTypes.LongBlondHair;
+        _selectedHat = HatTypes.AstrastronautHelmet;
+        _openHairs = new List<HairTypes> { _selectedHair};
+        _openHats = new List<HatTypes> { _selectedHat };
+    }
+    [JsonConstructor]
+    public PlayerData(int money, HairTypes seletedHair, HatTypes selectedHat, List<HairTypes>openHairs, List<HatTypes> openHats)
+    {
+        _money = money;
+        _selectedHair = seletedHair;
+        _selectedHat = selectedHat;
+        _openHairs = openHairs;
+        _openHats = openHats;
+    }
 
     public HairTypes SelectedHair
     {
