@@ -19,8 +19,7 @@ public class ShopBootstrap : MonoBehaviour
     {
         _persistantData = new PersistantData();
         _localDataProvider = new LocalDataProvider(_persistantData);
-
-        TryToLoadOrInitialize();
+        TryToLoadOrInit();
     }
     private void InitializeWallet()
     {
@@ -34,9 +33,9 @@ public class ShopBootstrap : MonoBehaviour
         ItemUnlocker itemUnlocker = new ItemUnlocker(_persistantData);
         _shop.Initialize(itemSelector, itemUnlocker, selectedItemChecker, openItemChecker, _wallet, _localDataProvider);
     }
-    private void TryToLoadOrInitialize()
+    private void TryToLoadOrInit()
     {
         if (_localDataProvider.TryLoad() == false)
-            _persistantData = new PersistantData();
+            _persistantData.PlayerData = new PlayerData();
     }
 }

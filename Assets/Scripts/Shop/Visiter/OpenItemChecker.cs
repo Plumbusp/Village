@@ -11,5 +11,6 @@ public class OpenItemChecker : IShopItemVisiter
     public void Visit(ShopItem shopItem) => Visit((dynamic)shopItem);
 
     public void Visit(HatItem hatItem) => isOpened = _persistantData.PlayerData.OpenHats.Contains(hatItem.HatType);
+
     public void Visit(HairItem hairItem) => isOpened = _persistantData.PlayerData.OpenHairs.Contains(hairItem.HairType);
 }

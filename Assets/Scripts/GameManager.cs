@@ -27,7 +27,7 @@ public class GameManager: MonoBehaviour
 
            DontDestroyOnLoad(this.gameObject);
         }
-    private void Start()
+        private void Start()
         {
              gameState = GameState.play;
         }
