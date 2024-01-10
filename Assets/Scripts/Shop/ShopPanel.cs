@@ -32,6 +32,7 @@ public class ShopPanel : MonoBehaviour
                 _selectedItemChecker.Visit(item);
                 if (_selectedItemChecker.isSelected)
                 {
+                    OnItemViewClick(instance);
                     instance.Highlighte();
                     instance.Select();
                 }

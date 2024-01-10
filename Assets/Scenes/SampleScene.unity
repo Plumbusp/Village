@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 119534052}
   - component: {fileID: 119534051}
   - component: {fileID: 119534050}
+  - component: {fileID: 119534053}
   m_Layer: 5
   m_Name: Select
   m_TagString: Untagged
@@ -378,6 +379,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119534048}
   m_CullTransparentMesh: 1
+--- !u!114 &119534053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119534048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e555475fb7900ef45a89d39b52d2d915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &134957347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,8 +2232,9 @@ GameObject:
   - component: {fileID: 1047381599}
   - component: {fileID: 1047381601}
   - component: {fileID: 1047381600}
+  - component: {fileID: 1047381602}
   m_Layer: 5
-  m_Name: model
+  m_Name: Preview Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2283,6 +2297,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047381598}
   m_CullTransparentMesh: 1
+--- !u!114 &1047381602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047381598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac435a3206c28044cb1ad10427a0e3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1151116354
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,8 +3699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 472510315}
-  _lockColor: {r: 1, g: 0, b: 0, a: 0}
-  _unlockColor: {r: 1, g: 1, b: 1, a: 0}
+  _lockColor: {r: 0.8962264, g: 0.43543077, b: 0.43543077, a: 1}
+  _unlockColor: {r: 1, g: 1, b: 1, a: 1}
   _shakeDuration: 2
   _shakeStrength: 1
 --- !u!114 &2135432451
@@ -3813,7 +3839,8 @@ MonoBehaviour:
   _hairButton: {fileID: 1631243997}
   _shopContent: {fileID: 11400000, guid: f66564236815e90489db3267d0d50b77, type: 2}
   _shopPanel: {fileID: 918979969}
-  _selectionButton: {fileID: 119534050}
+  _previewImage: {fileID: 1047381602}
+  _selectionButton: {fileID: 119534053}
   _selectedText: {fileID: 406224369}
   _buyButton: {fileID: 2135432450}
 --- !u!1 &253844384673578559
@@ -4991,7 +5018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7705541906254042914
 Transform:
   m_ObjectHideFlags: 0

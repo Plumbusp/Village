@@ -18,6 +18,7 @@ public class ShopItemView : MonoBehaviour, IPointerClickHandler
     public ShopItem Item { get; private set; }
     public bool IsLock { get; private set; }
     public int Price => Item.Price;
+    public Image Image => _contentImage;
     public void Initialize(ShopItem item)
     {
         _backgroundImage = GetComponent<Image>();

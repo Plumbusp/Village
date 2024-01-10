@@ -17,7 +17,8 @@ public class Shop : MonoBehaviour
 
     private Wallet _wallet;
 
-    [SerializeField]  private Button _selectionButton;
+    [SerializeField] private PreviewImage _previewImage;
+    [SerializeField]  private SelectButton _selectionButton;
     [SerializeField] private Image _selectedText;
     [SerializeField] private BuyButton _buyButton;
 
@@ -33,6 +34,7 @@ public class Shop : MonoBehaviour
         _hairButton.Click += OnHairCategoryButtonClick;
         _shopPanel.OnItemViewClicked += OnItemViewClick;
         _buyButton.Click += OnBuyButtonClick;
+        _selectionButton.Click += OnSelectionButtonClick;
     }
     private void OnDisable()
     {
@@ -40,6 +42,7 @@ public class Shop : MonoBehaviour
         _hairButton.Click -= OnHairCategoryButtonClick;
         _shopPanel.OnItemViewClicked -= OnItemViewClick;
         _buyButton.Click -= OnBuyButtonClick;
+        _selectionButton.Click -= OnSelectionButtonClick;
     }
     public void Initialize(ItemSelector _itemSelector, ItemUnlocker _itemUnlocker, SelectedItemChecker _selectedItemChecker, OpenItemChecker _openItemChecker,Wallet wallet, LocalDataProvider localDataprovider)
     {
@@ -51,7 +54,6 @@ public class Shop : MonoBehaviour
         this._dataProvider = localDataprovider;
         _shopPanel.Initialize(_openItemChecker, _selectedItemChecker);
         OnHatsCategoryButtonClick();
-        
     }
     private void OnHatsCategoryButtonClick()
     {
@@ -68,6 +70,7 @@ public class Shop : MonoBehaviour
     private void OnItemViewClick(ShopItemView shopItemView)
     {
         _previewedItem = shopItemView;
+        _previewImage.ShowPreview(_previewedItem);
         _openItemChecker.Visit(_previewedItem.Item);
         if (_openItemChecker.isOpened)
         {
@@ -98,21 +101,25 @@ public class Shop : MonoBehaviour
             _wallet.Spend(_previewedItem.Price);
             _previewedItem.Unlock();
             SelectItem();
+            ShowSelectedText();
             _dataProvider.Save();    // Сохраняем покупку
         }
     }
     private void ShowSelectionButton()
     {
+        _selectionButton.gameObject.SetActive(true);
         HideSelectedText();
         HideBuyButton();
     }
     private void ShowSelectedText()
     {
+        _selectedText.gameObject.SetActive(true);
         HideSelectionButton();
         HideBuyButton();
     }
     private void ShowBuyButton(int price)
     {
+        _buyButton.gameObject.SetActive(true);
         _buyButton.UpdateText(price.ToString());
         if(_wallet.IsEnough(price))
         {
