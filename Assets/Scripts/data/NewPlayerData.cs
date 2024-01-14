@@ -2,10 +2,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class PlayerData
+public class NewPlayerData : MonoBehaviour
 {
     private HairTypes _selectedHair;
     private HatTypes _selectedHat;
@@ -13,17 +12,17 @@ public class PlayerData
     private List<HatTypes> _openHats;
     private int _money;
 
-    public PlayerData()
+    public NewPlayerData()
     {
         Debug.Log("DEFAULT");
         _money = 4000;
         _selectedHair = HairTypes.ShortBlackHair;
         _selectedHat = HatTypes.AstrastronautHelmet;
-        _openHairs = new List<HairTypes> { _selectedHair};
+        _openHairs = new List<HairTypes> { _selectedHair };
         _openHats = new List<HatTypes> { _selectedHat };
     }
     [JsonConstructor]
-    public PlayerData(int money, HairTypes seletedHair, HatTypes selectedHat, List<HairTypes>openHairs, List<HatTypes> openHats)
+    public NewPlayerData(int money, HairTypes seletedHair, HatTypes selectedHat, List<HairTypes> openHairs, List<HatTypes> openHats)
     {
         Debug.Log("JSON");
         _money = money;
@@ -35,7 +34,8 @@ public class PlayerData
 
     public HairTypes SelectedHair
     {
-        get {
+        get
+        {
             return _selectedHair;
         }
         set
@@ -64,10 +64,12 @@ public class PlayerData
     public IEnumerable<HatTypes> OpenHats => _openHats;
     public int Money
     {
-        get {
+        get
+        {
             return _money;
         }
-        set {
+        set
+        {
             if (value < 0)
                 throw new ArgumentException(nameof(value));
             _money = value;
@@ -76,13 +78,13 @@ public class PlayerData
 
     public void OpenTheHair(HairTypes hair)
     {
-        if(_openHairs.Contains(hair))
+        if (_openHairs.Contains(hair))
             throw new ArgumentException(nameof(hair));
         _openHairs.Add(hair);
     }
     public void OpenTheHat(HatTypes hat)
     {
-        if(_openHats.Contains(hat))
+        if (_openHats.Contains(hat))
             throw new ArgumentException(nameof(hat));
         _openHats.Add(hat);
     }

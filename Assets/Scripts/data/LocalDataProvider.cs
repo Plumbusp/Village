@@ -6,19 +6,22 @@ using UnityEngine;
 
 public class LocalDataProvider
 {
-    private const string _fileName = "/PlayerData.json";  // Remember about extension!
+    private const string _fileName = "/playerData.json";  // Remember about extension!
     private PersistantData _persistantData;
     public LocalDataProvider(PersistantData persistantData) => _persistantData = persistantData; // Передаем ссылку!
 
     private string SavePath = Application.persistentDataPath;
-    private string FullPath => $"{SavePath}{_fileName}";
+    private string FullPath => SavePath +_fileName;
     public bool TryLoad()
-    { 
-        if(IsDataAlreadyExists() == false)
+    {
+        Debug.Log(FullPath);
+        if(IsFileExists() == false)
             return false;
         try
         {
-            _persistantData.PlayerData = JsonConvert.DeserializeObject<PlayerData>(FullPath);
+            string jsonString = File.ReadAllText(FullPath);
+            Debug.Log(jsonString);
+            _persistantData.PlayerData = JsonConvert.DeserializeObject<PlayerData>(jsonString);
             return true;
         }
         catch(Exception e)
@@ -33,5 +36,5 @@ public class LocalDataProvider
     {
         File.WriteAllText(FullPath, JsonConvert.SerializeObject(_persistantData.PlayerData, Formatting.Indented));
     }
-    private bool IsDataAlreadyExists() => File.Exists(FullPath);
+    private bool IsFileExists() => File.Exists(FullPath);
 }

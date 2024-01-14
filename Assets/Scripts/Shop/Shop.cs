@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ public class Shop : MonoBehaviour
     private SelectedItemChecker _selectedItemChecker;
     private OpenItemChecker _openItemChecker;
 
+    private ItemInitialSetter _initialSetter;
+
     ///// IN HERE WE ARE WORKING WITH 1 VIEW ITEM THAT IS CURRENTLY PREVIEWED //////
     private void OnEnable()
     {
@@ -44,17 +47,21 @@ public class Shop : MonoBehaviour
         _buyButton.Click -= OnBuyButtonClick;
         _selectionButton.Click -= OnSelectionButtonClick;
     }
-    public void Initialize(ItemSelector _itemSelector, ItemUnlocker _itemUnlocker, SelectedItemChecker _selectedItemChecker, OpenItemChecker _openItemChecker,Wallet wallet, LocalDataProvider localDataprovider)
+    public void Initialize(ItemSelector _itemSelector, ItemUnlocker _itemUnlocker, SelectedItemChecker _selectedItemChecker, OpenItemChecker _openItemChecker, ItemInitialSetter itemInitialSetter, Wallet wallet, LocalDataProvider localDataprovider)
     {
         _wallet = wallet;
         this._itemSelector = _itemSelector;
         this._itemUnlocker = _itemUnlocker;
         this._selectedItemChecker = _selectedItemChecker;
         this._openItemChecker = _openItemChecker;
+        this._initialSetter = itemInitialSetter;
         this._dataProvider = localDataprovider;
         _shopPanel.Initialize(_openItemChecker, _selectedItemChecker);
-        OnHatsCategoryButtonClick();
+        OnHairCategoryButtonClick();
+
+        _initialSetter.SetInitially();
     }
+
     private void OnHatsCategoryButtonClick()
     {
         _hatsButton.Selected();
@@ -93,6 +100,12 @@ public class Shop : MonoBehaviour
         ShowSelectedText();
         SelectItem();
     }
+    public void HideSelectionButton() => _selectionButton.gameObject.SetActive(false);
+    public void HideSelectedText() => _selectedText.gameObject.SetActive(false);
+    public void HideBuyButton() => _buyButton.gameObject.SetActive(false);
+
+    public ShopContent GetShopContent() => _shopContent;
+
     private void OnBuyButtonClick()  // called only if we have enought money, we check this in ShowbuyButton()
     {
         if (_wallet.IsEnough(_previewedItem.Price)) // Just double security level
@@ -132,10 +145,6 @@ public class Shop : MonoBehaviour
         HideSelectionButton();
         HideSelectedText();
     }
-
-    public void HideSelectionButton() => _selectionButton.gameObject.SetActive(false);
-    public void HideSelectedText() => _selectedText.gameObject.SetActive(false);
-    public void HideBuyButton() => _buyButton.gameObject.SetActive(false);
 
     private void SelectItem()
     {

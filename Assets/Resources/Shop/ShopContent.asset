@@ -18,3 +18,5 @@ MonoBehaviour:
   _hatItems:
   - {fileID: 11400000, guid: 1a48fd5cb0e306848a109964f090f9c7, type: 2}
   - {fileID: 11400000, guid: b66463d7ee979bd489676c69eb564b69, type: 2}
+  - {fileID: 11400000, guid: b7eccc674421b86458a1f3e0de86b654, type: 2}
+  - {fileID: 11400000, guid: 091e956d2faf7144f8bc4a81c6b3b612, type: 2}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopBootstrap : MonoBehaviour
 {
     [SerializeField] private Shop _shop;
+    [SerializeField] private PlayerLooks _playerLooks;
 
     private PersistantData _persistantData;
     private LocalDataProvider _localDataProvider;
@@ -31,7 +32,9 @@ public class ShopBootstrap : MonoBehaviour
         SelectedItemChecker selectedItemChecker = new SelectedItemChecker(_persistantData);
         ItemSelector itemSelector = new ItemSelector(_persistantData);
         ItemUnlocker itemUnlocker = new ItemUnlocker(_persistantData);
-        _shop.Initialize(itemSelector, itemUnlocker, selectedItemChecker, openItemChecker, _wallet, _localDataProvider);
+        ItemInitialSetter itemInitialSetter = new ItemInitialSetter(_persistantData,_shop.GetShopContent());
+        _playerLooks.Initialize(itemSelector, itemInitialSetter);
+        _shop.Initialize(itemSelector, itemUnlocker, selectedItemChecker, openItemChecker,itemInitialSetter, _wallet, _localDataProvider);
     }
     private void TryToLoadOrInit()
     {

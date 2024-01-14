@@ -19,23 +19,23 @@ public class ShopPanel : MonoBehaviour
     public void Show(IEnumerable<ShopItem> shopItems)
     {
         Clear();
-        foreach(ShopItem item in shopItems)
+        foreach(ShopItem shopItem in shopItems)
         {
-            ShopItemView instance = _shopItemViewFactory.Get(item, _parent);
+            ShopItemView instance = _shopItemViewFactory.Get(shopItem, _parent);
             _shopItems.Add(instance);
             instance.Click += OnItemViewClick;
             instance.UnHighlighte();
             instance.UnSelected();
-            _openItemChecker.Visit(item);
+            _openItemChecker.Visit(shopItem);
             if (_openItemChecker.isOpened)
             {
-                _selectedItemChecker.Visit(item);
+                _selectedItemChecker.Visit(shopItem);
                 if (_selectedItemChecker.isSelected)
                 {
-                    OnItemViewClick(instance);
-                    instance.Highlighte();
+                    OnItemViewClick(instance);  //Visually selceting item if it is Bought And Selected
+                    instance.Highlighte();       
                     instance.Select();
-                }
+                } 
                 instance.Unlock();  
             }
             else
