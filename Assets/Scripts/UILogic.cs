@@ -6,32 +6,59 @@ using UnityEngine.InputSystem;
 public class UILogic : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _shop;
     private InputActions _playerInputActions; //Player's 
     private void OnEnable()
     {
         _playerInputActions = new InputActions();
         _playerInputActions.UI.Enable();
-        _playerInputActions.UI.OpenPauseMenu.performed += OpenPauseMenu;
+        _playerInputActions.UI.OpenPauseMenu.performed += HandlePauseMenu;
+        _playerInputActions.UI.OpenShop.performed += HandleShop;
+        _playerInputActions.UI.OpenShop.Disable();
+
+        PlayerInteractions.OnPlayerShopEnter += () => _playerInputActions.UI.OpenShop.Enable();
+        PlayerInteractions.OnPlayerShopExit += () => _playerInputActions.UI.OpenShop.Disable();
     }
     private void OnDisable()
     {
         _playerInputActions.UI.Disable();
     }
-    private void OpenPauseMenu(InputAction.CallbackContext context)
+    private void HandlePauseMenu(InputAction.CallbackContext context)
     {
         if (GameManager.Instance.gameState == GameState.paused)
         {
-            Time.timeScale = 1f;
-            _playerInputActions.Player.Enable();
+            ResumeGame();
             _pauseMenu.SetActive(false);
-            GameManager.Instance.SetGameState(GameState.play);
         }
         else
         {
-            Time.timeScale = 0f;
-            _playerInputActions.Player.Disable();
+            Pausegame();
             _pauseMenu.SetActive(true);
-            GameManager.Instance.SetGameState(GameState.paused);
         }
+    }
+    private void HandleShop(InputAction.CallbackContext context)
+    {
+        if (GameManager.Instance.gameState == GameState.paused)
+        {
+            ResumeGame();
+            _shop.SetActive(false);
+        }
+        else
+        {
+            Pausegame();
+            _shop.SetActive(true);
+        }
+    }
+    private void Pausegame()
+    {
+        Time.timeScale = 0f;
+        _playerInputActions.Player.Disable();
+        GameManager.Instance.SetGameState(GameState.paused);
+    }
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        _playerInputActions.Player.Enable();
+        GameManager.Instance.SetGameState(GameState.play);
     }
 }

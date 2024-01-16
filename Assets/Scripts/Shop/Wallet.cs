@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Wallet
 {
-    public event Action<int> OnMoneyChange;
+    public Action<int> OnMoneyChange;
     private PersistantData _persistantData;
     public Wallet(PersistantData persistantData)
     {
@@ -20,7 +20,7 @@ public class Wallet
             throw new ArgumentOutOfRangeException(nameof(coins));
 
         _persistantData.PlayerData.Money -= coins;
-        OnMoneyChange?.Invoke(coins);
+        OnMoneyChange?.Invoke(_persistantData.PlayerData.Money);
     }
     public void AddCoins(int coins)
     {
@@ -29,5 +29,12 @@ public class Wallet
 
         _persistantData.PlayerData.Money += coins;
         OnMoneyChange?.Invoke(coins);
+    }
+    /// <summary>
+    /// Called in the first load for updating the money text
+    /// </summary>
+    public void CallMoneyChange()
+    {
+        OnMoneyChange?.Invoke(_persistantData.PlayerData.Money);
     }
 }

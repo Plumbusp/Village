@@ -6,6 +6,7 @@ public class ShopBootstrap : MonoBehaviour
 {
     [SerializeField] private Shop _shop;
     [SerializeField] private PlayerLooks _playerLooks;
+    [SerializeField] private MoneyShower _moneyShower;
 
     private PersistantData _persistantData;
     private LocalDataProvider _localDataProvider;
@@ -14,7 +15,9 @@ public class ShopBootstrap : MonoBehaviour
     {
         InitializeData();
         InitializeWallet();
+        InitializeMoneyShower();
         InitializeShop();
+        _wallet.CallMoneyChange();
     }
     private void InitializeData()
     {
@@ -25,6 +28,10 @@ public class ShopBootstrap : MonoBehaviour
     private void InitializeWallet()
     {
         _wallet = new Wallet(_persistantData);
+    }
+    private void InitializeMoneyShower()
+    {
+        _moneyShower.Initialize(_wallet);
     }
     private void InitializeShop()
     {

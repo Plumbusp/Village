@@ -57,9 +57,10 @@ public class Shop : MonoBehaviour
         this._initialSetter = itemInitialSetter;
         this._dataProvider = localDataprovider;
         _shopPanel.Initialize(_openItemChecker, _selectedItemChecker);
-        OnHairCategoryButtonClick();
 
         _initialSetter.SetInitially();
+
+        OnHairCategoryButtonClick();
     }
 
     private void OnHatsCategoryButtonClick()
@@ -76,6 +77,7 @@ public class Shop : MonoBehaviour
     }
     private void OnItemViewClick(ShopItemView shopItemView)
     {
+        Debug.Log("OnItemViewClick");
         _previewedItem = shopItemView;
         _previewImage.ShowPreview(_previewedItem);
         _openItemChecker.Visit(_previewedItem.Item);
