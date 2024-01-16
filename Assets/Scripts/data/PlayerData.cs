@@ -25,7 +25,6 @@ public class PlayerData
     [JsonConstructor]
     public PlayerData(int money, HairTypes seletedHair, HatTypes selectedHat, List<HairTypes>openHairs, List<HatTypes> openHats)
     {
-        Debug.Log("JSON");
         _money = money;
         _selectedHair = seletedHair;
         _selectedHat = selectedHat;

@@ -17,7 +17,6 @@ public class ItemInitialSetter
     }
     public void SetInitially() 
     {
-        Debug.Log("Started Setter");
         IEnumerable<HatItem> hatItems = _shopContent.HatItems;
         foreach (HatItem item in hatItems)
         {
@@ -28,39 +27,28 @@ public class ItemInitialSetter
         {
             Visit(item);
         }
-        Debug.Log(OnInitialHairFound.GetInvocationList());
     }
 
     public void Visit(HatItem hatItem)   // We use HatItem Type here only for defining the right type of handling 
     {
-        Debug.Log(_persistantData.PlayerData.SelectedHat);
-        int i = 0;
-        foreach (HatItem item in _shopContent.HatItems)
+        if (_persistantData.PlayerData.OpenHats.Contains(hatItem.HatType))
         {
-            if (_persistantData.PlayerData.OpenHats.Contains(item.HatType))
-            {
-                if(_persistantData.PlayerData.SelectedHat == hatItem.HatType)
-                {
-                    i ++;
-                    Debug.Log("Invoke Hat" + item.HatType + i);
-                    OnInitialHatFound?.Invoke(item);
-                }
-            }
+           if(_persistantData.PlayerData.SelectedHat == hatItem.HatType)
+           {
+               Debug.Log("Invoke Hat" + hatItem.HatType);
+               OnInitialHatFound?.Invoke(hatItem);
+           }
         }
     }
 
     public void Visit(HairItem hairItem)
     {
-        Debug.Log(_persistantData.PlayerData.SelectedHair);
-        foreach (HairItem item in _shopContent.HairItems)
+        if (_persistantData.PlayerData.OpenHairs.Contains(hairItem.HairType))
         {
-            if (_persistantData.PlayerData.OpenHairs.Contains(item.HairType))
+            if (_persistantData.PlayerData.SelectedHair == hairItem.HairType)
             {
-                if (_persistantData.PlayerData.SelectedHair == hairItem.HairType)
-                {
-                    Debug.Log("Invoke Hair" + item.HairType);
-                    OnInitialHairFound?.Invoke(item);
-                }
+                    Debug.Log("Invoke Hair" + hairItem.HairType);
+                    OnInitialHairFound?.Invoke(hairItem);
             }
         }
     }
