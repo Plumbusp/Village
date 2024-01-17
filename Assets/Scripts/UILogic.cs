@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,14 +14,32 @@ public class UILogic : MonoBehaviour
         _playerInputActions.UI.OpenShop.performed += HandleShop;
         _playerInputActions.UI.OpenShop.Disable();
 
+        PauseMenuLogic.OnContinueButtonClick += HandlePauseMenu;
         PlayerInteractions.OnPlayerShopEnter += () => _playerInputActions.UI.OpenShop.Enable();
         PlayerInteractions.OnPlayerShopExit += () => _playerInputActions.UI.OpenShop.Disable();
+
+        ResumeGame();
     }
     private void OnDisable()
     {
         _playerInputActions.UI.Disable();
+        _playerInputActions.UI.OpenPauseMenu.performed -= HandlePauseMenu;
+        _playerInputActions.UI.OpenShop.performed -= HandleShop;
     }
     private void HandlePauseMenu(InputAction.CallbackContext context)
+    {
+        if (GameManager.Instance.gameState == GameState.paused)
+        {
+            ResumeGame();
+            _pauseMenu.SetActive(false);
+        }
+        else
+        {
+            Pausegame();
+            _pauseMenu.SetActive(true);
+        }
+    }
+    private void HandlePauseMenu()
     {
         if (GameManager.Instance.gameState == GameState.paused)
         {
