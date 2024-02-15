@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private InputActions _playerInputActions;
 
+    private Vector3 _facingRight = new Vector3(0,0,0);
+    private Vector3 _facingLeft = new Vector3(0,180,0);
+    private bool _isFacingRight;
 
     private void Awake()
     {
@@ -20,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
         _playerInputActions = new InputActions();
         _playerInputActions.Player.Enable();
         _playerInputActions.Player.Jump.performed += Jump;
-        _playerInputActions.Player.Move.performed += Move;
+
+        transform.rotation = Quaternion.Euler(_facingRight);
+        _isFacingRight = true;
     }
     private void OnDisable()
     {
@@ -31,14 +36,6 @@ public class PlayerMovement : MonoBehaviour
         if (!(GameManager.Instance.gameState == GameState.paused))
         {
             rb.AddForce(Vector2.up * jumpForce);
-        }
-    }
-    private void Move(InputAction.CallbackContext callback)
-    {
-        if(!(GameManager.Instance.gameState == GameState.paused))
-        {
-            Vector2 moveVectorNormalized = callback.ReadValue<Vector2>();
-            rb.AddForce(new Vector2(moveVectorNormalized.x, 0) * speed);
         }
     }
     private void Update()
@@ -55,6 +52,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 Vector2 moveVectorNormalized = _playerInputActions.Player.Move.ReadValue<Vector2>();
                 rb.AddForce((new Vector2(moveVectorNormalized.x, 0) * speedValueSupport));
+                if (rb.velocity.x <- 1 && !_isFacingRight)
+                {
+                    transform.rotation = Quaternion.Euler(_facingRight);
+                    _isFacingRight = true;
+                }
+                else if (rb.velocity.x > 1 && _isFacingRight)
+                {
+                    transform.rotation = Quaternion.Euler(_facingLeft);
+                    _isFacingRight = false;
+                }
             }
         }
     }
