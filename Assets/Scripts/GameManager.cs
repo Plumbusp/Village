@@ -12,6 +12,24 @@ public class GameManager: MonoBehaviour
 
         public GameState gameState { get; private set; }
 
+        private bool _isAttacking;
+        public bool IsAttacking
+        {
+        get
+        {
+            if(gameState != GameState.play)
+            {
+                throw new System.Exception();
+            }
+            return _isAttacking;
+        }
+        set
+        {
+             _isAttacking = value;
+        }
+        }
+
+
         private void Awake()
         {
 

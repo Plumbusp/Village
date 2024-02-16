@@ -35,7 +35,6 @@ public class ItemInitialSetter
         {
            if(_persistantData.PlayerData.SelectedHat == hatItem.HatType)
            {
-               Debug.Log("Invoke Hat" + hatItem.HatType);
                OnInitialHatFound?.Invoke(hatItem);
            }
         }
@@ -47,7 +46,6 @@ public class ItemInitialSetter
         {
             if (_persistantData.PlayerData.SelectedHair == hairItem.HairType)
             {
-                    Debug.Log("Invoke Hair" + hairItem.HairType);
                     OnInitialHairFound?.Invoke(hairItem);
             }
         }

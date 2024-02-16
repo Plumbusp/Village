@@ -77,7 +77,6 @@ public class Shop : MonoBehaviour
     }
     private void OnItemViewClick(ShopItemView shopItemView)
     {
-        Debug.Log("OnItemViewClick");
         _previewedItem = shopItemView;
         _previewImage.ShowPreview(_previewedItem);
         _openItemChecker.Visit(_previewedItem.Item);

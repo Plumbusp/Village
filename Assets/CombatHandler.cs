@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CombatHandler : MonoBehaviour
 {
@@ -9,33 +12,53 @@ public class CombatHandler : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private int damage;
 
+    [SerializeField] private float windUp;
+
     [SerializeField] private float attackTime;
 
     [SerializeField] private float timeBetween;
+    private InputActions _playerInputActions;
 
-    private bool isAttacking;
+    private bool _isAttackState = false;
 
     private void Awake()
     {
-        sword.OnAttack += Attack;
+        _playerInputActions = new InputActions();
+        if (!_playerInputActions.Player.enabled)
+            _playerInputActions.Player.Enable();
+
+        _playerInputActions.Player.Attack.performed += Attack;
+
+        sword.OnEnemyEnterZone += OnAttackEnemy;
+
+        sword.DeactivateSword();
+        sword.gameObject.SetActive(false);
     }
-    private void Attack(Enemy enemy)
+    private void Attack(InputAction.CallbackContext callbackContext)
     {
-        if (isAttacking)
+        if (_isAttackState)
             return;
-        StartCoroutine(AttackCoroutine(enemy));
-        
+        _isAttackState = true;
+        StartCoroutine(AttackCoroutine());
     }
-    IEnumerator AttackCoroutine(Enemy enemy)
+    IEnumerator AttackCoroutine()
     {
-        isAttacking = true;
+        sword.ActivateSword();
         Debug.Log("wait...");
-        yield return new WaitForSeconds(attackTime);
-        enemy.TakeDamage(damage);
+        yield return new WaitForSeconds(windUp);
         Debug.Log("Attack");
-        yield return new WaitForSeconds(timeBetween);
+        GameManager.Instance.IsAttacking = true;
+        yield return new WaitForSeconds(attackTime);
+        GameManager.Instance.IsAttacking = false;
         Debug.Log("Cool down!");
-        isAttacking =false;
+        yield return new WaitForSeconds(timeBetween);
         Debug.Log("Ready again.");
+        sword.DeactivateSword();
+        _isAttackState = false;
+    }
+
+    private void OnAttackEnemy(Enemy enemy)
+    {
+        enemy.TakeDamage(damage);
     }
 }

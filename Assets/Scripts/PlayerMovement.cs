@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Transform _playerBody;
+
     [SerializeField] private float jumpForce;
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
@@ -21,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _playerInputActions = new InputActions();
-        _playerInputActions.Player.Enable();
+        if (!_playerInputActions.Player.enabled)
+            _playerInputActions.Player.Enable();
         _playerInputActions.Player.Jump.performed += Jump;
 
         transform.rotation = Quaternion.Euler(_facingRight);
@@ -54,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce((new Vector2(moveVectorNormalized.x, 0) * speedValueSupport));
                 if (rb.velocity.x <- 1 && !_isFacingRight)
                 {
-                    transform.rotation = Quaternion.Euler(_facingRight);
+                    _playerBody.rotation = Quaternion.Euler(_facingRight);
                     _isFacingRight = true;
                 }
                 else if (rb.velocity.x > 1 && _isFacingRight)
                 {
-                    transform.rotation = Quaternion.Euler(_facingLeft);
+                    _playerBody.rotation = Quaternion.Euler(_facingLeft);
                     _isFacingRight = false;
                 }
             }
